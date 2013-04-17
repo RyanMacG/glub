@@ -1,0 +1,24 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.3.4)
+    crack (0.3.2)
+    mime-types (1.19)
+    rake (10.0.3)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    thor (0.16.0)
+    vcr (2.4.0)
+    webmock (1.11.0)
+      addressable (>= 2.2.7)
+      crack (>= 0.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rake
+  rest-client
+  thor
+  vcr
+  webmock

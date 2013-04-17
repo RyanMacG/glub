@@ -35,7 +35,9 @@ class Glub < Thor
     response = JSON.parse response.body
 
     puts "Repository #{project_name} created. Add it as a remote using: "
-    puts "  git remote add origin git@#{@@gitlab_host}:#{response['path_with_namespace']}.git"
+    setup_repo = "git remote add origin git@#{@@gitlab_host}:#{response['path_with_namespace']}.git"
+    puts "  #{setup_repo}"
+    setup_repo
   end
 
 end

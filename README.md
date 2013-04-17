@@ -7,6 +7,17 @@ Dependencies:
 * [Thor](http://whatisthor.com)
 * [Rest Client](http://rubygems.org/gems/rest-client)
 
+## Config
+
+You will need a file called .gitlab in your home directory. It's a YAML file. 
+
+You can get your API key - also known as private token - from your account page on Gitlab
+
+### Config example
+
+api_endpoint:   http://gitlab.mycompany.com/api/v3
+api_key     :   Kd834fh3ofoaal
+
 ## TODOs
 
 This is very much an early release, that'll be getting added to frequently.

@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ['George McIntosh']
   s.email       = 'george@georgemcintosh.com'
   s.files       = ['lib/glub.rb']
-  s.homepage    = 'https://github.com/georgecodes/glub'
+  s.homepage    = 'http://georgemcintosh.com/glub/'
   s.executables << 'glub'
   s.add_runtime_dependency "thor"
   s.add_runtime_dependency "rest-client"

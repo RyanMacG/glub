@@ -7,6 +7,10 @@ Dependencies:
 * [Thor](http://whatisthor.com)
 * [Rest Client](http://rubygems.org/gems/rest-client)
 
+## Installation
+
+gem install glub
+
 ## Config
 
 You will need a file called .gitlab in your home directory. It's a YAML file. 
@@ -25,4 +29,8 @@ This is very much an early release, that'll be getting added to frequently.
 Coming soon:
 
 * More control over project creation
-* It'll be a Gem
+
+
+## Licence
+
+This is released under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) licence.

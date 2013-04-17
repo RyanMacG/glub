@@ -6,7 +6,9 @@ require 'yaml'
 require 'thor'
 
 class Glub < Thor 
-
+  
+  #class_option :configfile, :type => :string, :aliases => 'c' 
+ 
   config = YAML::load_file "#{ENV['HOME']}/.glub"
   @@api_key = config['api_key']
   @@gitlab_host = config['gitlab_host']
@@ -14,7 +16,7 @@ class Glub < Thor
 
   desc "create NAME", "Creates a new Gitlab project"
   def create(project_name)
-
+    
     puts "Creating Gitlab project #{project_name}"
     command = { 
         :name => project_name,

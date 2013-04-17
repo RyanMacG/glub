@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/glub'
+
+Glub.start(ARGV)

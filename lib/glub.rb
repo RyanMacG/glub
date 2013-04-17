@@ -70,7 +70,8 @@ class Glub < Thor
        config = YAML::load_file config_file
        @@api_key = config['api_key']
        @@gitlab_host = config['gitlab_host']
-       @@api_endpoint = "https://#{@@gitlab_host}/api/v3"
+       protocol = config['secure'] ? 'https' : 'http'
+       @@api_endpoint = "#{protocol}://#{@@gitlab_host}/api/v3"
     end
   end
 

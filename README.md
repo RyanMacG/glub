@@ -19,8 +19,8 @@ You can get your API key - also known as private token - from your account page 
 
 ### Config example
 
-api_endpoint:   http://gitlab.mycompany.com/api/v3
-api_key     :   Kd834fh3ofoaal
+    api_endpoint:   http://gitlab.mycompany.com/api/v3
+    api_key     :   Kd834fh3ofoaal
 
 ## FAQ
 

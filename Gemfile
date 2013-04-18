@@ -5,6 +5,7 @@ gem 'vcr'
 gem 'thor'
 gem 'rake'
 gem 'rest-client'
+gem 'sif'
 
 
 group :development do

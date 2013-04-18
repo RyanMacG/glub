@@ -4,7 +4,7 @@ require 'rest_client'
 require 'json'
 require 'yaml'
 require 'thor'
-require_relative 'sif'
+require 'sif'
 
 class Glub < Sif::Loader
 

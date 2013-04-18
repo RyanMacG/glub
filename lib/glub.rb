@@ -5,18 +5,16 @@ require 'json'
 require 'yaml'
 require 'thor'
 
-class Glub < Thor 
-  
-  #class_option :configfile, :type => :string, :aliases => 'c' 
- 
-  config = YAML::load_file "#{ENV['HOME']}/.glub"
-  @@api_key = config['api_key']
-  @@gitlab_host = config['gitlab_host']
-  @@api_endpoint = "http://#{@@gitlab_host}/api/v3" 
+class Glub < Thor
 
+  class_option :config, :default => "#{ENV['HOME']}/.glub", :aliases => ['-c']
+  class_option :host, :aliases => ['-h']
+  class_option :api_key, :aliases => ['-k']
+  
   desc "create NAME", "Creates a new Gitlab project"
   def create(project_name)
-    
+    load_configuration
+
     puts "Creating Gitlab project #{project_name}"
     command = { 
         :name => project_name,
@@ -40,6 +38,40 @@ class Glub < Thor
     setup_repo = "git remote add origin git@#{@@gitlab_host}:#{response['path_with_namespace']}.git"
     puts "  #{setup_repo}"
     setup_repo
+  end
+
+  desc "list projects", "Lists all projects"
+  def list
+  
+    load_configuration
+
+    response = RestClient.get( 
+       "#{@@api_endpoint}/projects?private_token=#{@@api_key}"
+    ) 
+
+    response = JSON.parse response.body
+
+    projects = []
+    response.each { |project| projects << project['name'] }
+    puts "Projects: "
+    projects.each { |project| puts "  #{project}" }
+    "#{projects}"
+
+  end
+ 
+  no_tasks do
+    def load_configuration
+       config_file = options[:config]
+       if (!File.exists?(config_file) ) 
+         puts "Unable to find config file #{config_file} - can't continue"
+         exit
+       end
+       config = YAML::load_file config_file
+       @@api_key = config['api_key']
+       @@gitlab_host = config['gitlab_host']
+       protocol = config['secure'] ? 'https' : 'http'
+       @@api_endpoint = "#{protocol}://#{@@gitlab_host}/api/v3"
+    end
   end
 
 end

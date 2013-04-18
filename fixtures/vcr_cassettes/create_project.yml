@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://git.specems.com/api/v3/projects?private_token=eQss1EsP1LFR5x2wuKKi
+    uri: https://gitlab.com/api/v3/projects?private_token=fjv8JKK87ujjH77
     body:
       encoding: UTF-8
       string: ! '{"name":"my-test-project","description":"this is a new project","default_branch":"master","issues_enabled":"true","wiki_ebabled":"true","wall_enabled":"true","merge_requests_enabled":"true"}'
@@ -22,36 +22,34 @@ http_interactions:
       code: 201
       message: Created
     headers:
-      Date:
-      - Wed, 17 Apr 2013 14:25:51 GMT
       Server:
-      - Apache/2.2.15 (Red Hat)
-      X-Powered-By:
-      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      - nginx
+      Date:
+      - Wed, 17 Apr 2013 17:27:14 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '632'
+      Connection:
+      - keep-alive
+      Status:
+      - 201 Created
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Etag:
-      - ! '"7a65e08e8061ca7443e313da52e8f536"'
+      - ! '"43f9385dddf7d6c36a6b9a15cae30309"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 264ab4bb89eae50dddb6b9ea0f93d49a
+      - a0c3b7382a29b38e170b2a833ea6852a
       X-Runtime:
-      - '0.577917'
+      - '0.265636'
       X-Rack-Cache:
       - invalidate, pass
-      Content-Length:
-      - '661'
-      Status:
-      - '201'
-      Connection:
-      - close
-      Content-Type:
-      - application/json
     body:
       encoding: US-ASCII
-      string: ! '{"id":36,"name":"my-test-project","description":"this is a new project","default_branch":"master","owner":{"id":2,"username":"george.mcintosh","email":"george.mcintosh@specsavers.com","name":"George
-        McIntosh","state":"active","created_at":"2013-04-16T15:15:31Z"},"public":false,"path":"my-test-project","path_with_namespace":"george.mcintosh/my-test-project","issues_enabled":true,"merge_requests_enabled":true,"wall_enabled":false,"wiki_enabled":true,"created_at":"2013-04-17T14:25:51Z","namespace":{"created_at":"2013-04-16T15:15:31Z","description":"","id":2,"name":"george.mcintosh","owner_id":2,"path":"george.mcintosh","updated_at":"2013-04-16T15:15:31Z"}}'
+      string: ! '{"id":4706,"name":"my-test-project","description":"this is a new
+        project","default_branch":"master","owner":{"id":4490,"username":"georgemc","email":"george@georgemcintosh.com","name":"GeorgeMc","state":"active","created_at":"2013-04-17T17:16:12Z"},"public":false,"path":"my-test-project","path_with_namespace":"georgemc/my-test-project","issues_enabled":true,"merge_requests_enabled":true,"wall_enabled":false,"wiki_enabled":true,"created_at":"2013-04-17T17:27:14Z","namespace":{"created_at":"2013-04-17T17:16:12Z","description":"","id":4468,"name":"georgemc","owner_id":4490,"path":"georgemc","updated_at":"2013-04-17T17:16:12Z"}}'
     http_version: 
-  recorded_at: Wed, 17 Apr 2013 14:25:51 GMT
+  recorded_at: Wed, 17 Apr 2013 17:26:21 GMT
 recorded_with: VCR 2.4.0

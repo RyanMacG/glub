@@ -3,8 +3,17 @@ GEM
   specs:
     addressable (2.3.4)
     crack (0.3.2)
+    git (1.2.5)
+    jeweler (1.8.4)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+      rdoc
+    json (1.7.7)
     mime-types (1.19)
     rake (10.0.3)
+    rdoc (4.0.1)
+      json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     thor (0.16.0)
@@ -17,6 +26,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler
+  jeweler (~> 1.8.4)
   rake
   rest-client
   thor

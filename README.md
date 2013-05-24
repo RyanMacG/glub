@@ -13,13 +13,13 @@ gem install glub
 
 ## Config
 
-You will need a file called .gitlab in your home directory. It's a YAML file. 
+You will need a file called .glub in your home directory. It's a YAML file. 
 
 You can get your API key - also known as private token - from your account page on Gitlab
 
 ### Config example
 
-    api_endpoint:   http://gitlab.mycompany.com/api/v3
+    gitlab_host :   gitlab.mycompany.com
     api_key     :   Kd834fh3ofoaal
 
 ## FAQ

@@ -52,7 +52,7 @@ class Glub < Sif::Loader
     response = JSON.parse response.body
 
     projects = []
-    response.each { |project| projects << project['name'] }
+    response.each { |project| projects << "Name:#{project['name']} / ID:#{project['id']}" }
     puts "Projects: "
     projects.each { |project| puts "  #{project}" }
     "#{projects}"

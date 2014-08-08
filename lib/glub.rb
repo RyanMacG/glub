@@ -14,8 +14,8 @@ class Glub < Sif::Loader
   class_option :host, :aliases => ['-h']
   class_option :api_key, :aliases => ['-k']
 
-  desc "create NAME", "Creates a new Gitlab project"
-  def create(project_name)
+  desc "create NAME (GROUP_ID/NAMESPACE_ID optional)", "Creates a new Gitlab project"
+  def create(project_name, namespace_id=nil)
 
     puts "Creating Gitlab project #{project_name}"
     command = {
@@ -27,6 +27,11 @@ class Glub < Sif::Loader
         :wall_enabled  => 'true',
         :merge_requests_enabled => 'true'
     }
+
+    unless namespace_id.nil?
+      command[:namespace_id] = namespace_id
+    end
+
 
     response = RestClient.post(
        "#{@api_endpoint}/projects?private_token=#{@api_key}",

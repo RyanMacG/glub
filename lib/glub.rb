@@ -13,12 +13,12 @@ class Glub < Sif::Loader
   class_option :config, :default => "#{ENV['HOME']}/.glub", :aliases => ['-c']
   class_option :host, :aliases => ['-h']
   class_option :api_key, :aliases => ['-k']
-  
+
   desc "create NAME", "Creates a new Gitlab project"
   def create(project_name)
- 
+
     puts "Creating Gitlab project #{project_name}"
-    command = { 
+    command = {
         :name => project_name,
         :description  => 'this is a new project',
         :default_branch => 'master',
@@ -26,13 +26,13 @@ class Glub < Sif::Loader
         :wiki_ebabled  => 'true',
         :wall_enabled  => 'true',
         :merge_requests_enabled => 'true'
-    } 
+    }
 
-    response = RestClient.post( 
+    response = RestClient.post(
        "#{@api_endpoint}/projects?private_token=#{@api_key}",
        command.to_json,
        :content_type => 'application/json'
-    ) 
+    )
 
     response = JSON.parse response.body
 
@@ -44,10 +44,10 @@ class Glub < Sif::Loader
 
   desc "list", "Lists all projects"
   def list
-  
-    response = RestClient.get( 
+
+    response = RestClient.get(
        "#{@api_endpoint}/projects?private_token=#{@api_key}"
-    ) 
+    )
 
     response = JSON.parse response.body
 
@@ -58,7 +58,7 @@ class Glub < Sif::Loader
     "#{projects}"
 
   end
-  
+
   desc "list_groups", "Lists all groups"
   def list_groups
 
@@ -74,7 +74,7 @@ class Glub < Sif::Loader
     groups.each { |group| puts "  #{group}" }
     "#{groups}"
   end
-  
+
   desc "create_group NAME", "Creates a new group"
   def create_group(group_name)
 
@@ -96,7 +96,7 @@ class Glub < Sif::Loader
     # add root user by default
     add_user_to_group(response['id'], 1, 'owner')
   end
-  
+
   desc "add_user_to_group GROUP_ID USER_ID PERMISSION", "Add a user to a group"
   def add_user_to_group(group_id, user_id, permission=nil)
     if permission.nil?
@@ -131,7 +131,7 @@ class Glub < Sif::Loader
 
     puts "User added to group #{group_name}"
   end
-  
+
   desc 'move_project_to_group GROUP_ID PROJECT_ID', 'Move a project to a group'
   def move_project_to_group(group_id, project_id)
 
@@ -171,7 +171,5 @@ class Glub < Sif::Loader
       @api_endpoint = "#{protocol}://#{@gitlab_host}/api/v3"
     end
   end
- 
+
 end
-
-

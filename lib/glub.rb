@@ -131,6 +131,38 @@ class Glub < Sif::Loader
 
     puts "User added to group #{group_name}"
   end
+  
+  desc 'move_project_to_group GROUP_ID PROJECT_ID', 'Move a project to a group'
+  def move_project_to_group(group_id, project_id)
+
+    group_response = RestClient.get(
+      "#{@api_endpoint}/groups/#{group_id}?private_token=#{@api_key}"
+    )
+    group_response = JSON.parse group_response.body
+    group_name = group_response['name']
+
+    project_response = RestClient.get(
+      "#{@api_endpoint}/projects/#{project_id}?private_token=#{@api_key}"
+    )
+    project_response = JSON.parse project_response.body
+    project_name = project_response['name']
+
+    puts "Moving project #{project_name} to group #{group_name}"
+    command = {
+      id: group_id,
+      project_id: project_id
+    }
+
+    response = RestClient.post(
+       "#{@api_endpoint}/groups/#{group_id}/projects/#{project_id}?private_token=#{@api_key}",
+       command.to_json,
+       content_type: 'application/json'
+    )
+
+    response = JSON.parse response.body
+
+    puts "Project #{project_name} moved to group #{group_name}"
+  end
 
   no_tasks do
     def load_configuration

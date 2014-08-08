@@ -58,6 +58,22 @@ class Glub < Sif::Loader
     "#{projects}"
 
   end
+  
+  desc "list_groups", "Lists all groups"
+  def list_groups
+
+    response = RestClient.get(
+       "#{@api_endpoint}/groups?private_token=#{@api_key}"
+    )
+
+    response = JSON.parse response.body
+
+    groups = []
+    response.each { |group| groups << "Name:#{group['name']} / ID:#{group['id']}" }
+    puts "Groups: "
+    groups.each { |group| puts "  #{group}" }
+    "#{groups}"
+  end
 
   no_tasks do
     def load_configuration

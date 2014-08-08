@@ -74,6 +74,27 @@ class Glub < Sif::Loader
     groups.each { |group| puts "  #{group}" }
     "#{groups}"
   end
+  
+  desc "create_group NAME", "Creates a new group"
+  def create_group(group_name)
+
+    puts "Creating Gitlab group #{group_name}"
+    command = {
+      name: group_name,
+      path: group_name.downcase.gsub(' ', '-')
+    }
+
+    response = RestClient.post(
+       "#{@api_endpoint}/groups?private_token=#{@api_key}",
+       command.to_json,
+       content_type: 'application/json'
+    )
+
+    response = JSON.parse response.body
+
+    puts "Group #{group_name} created."
+    
+  end
 
   no_tasks do
     def load_configuration

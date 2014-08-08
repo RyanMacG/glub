@@ -93,7 +93,41 @@ class Glub < Sif::Loader
     response = JSON.parse response.body
 
     puts "Group #{group_name} created."
-    
+  end
+  
+  desc "add_user_to_group GROUP_ID USER_ID PERMISSION", "Add a user to a group"
+  def add_user_to_group(group_id, user_id, permission=nil)
+    if permission.nil?
+      access_level = 30
+    else
+      access_level = determine_access_level(permission)
+    end
+
+    group_response = RestClient.get(
+      "#{@api_endpoint}/groups/#{group_id}?private_token=#{@api_key}"
+    )
+
+    group_response = JSON.parse group_response.body
+
+    group_name = group_response['name']
+
+
+    puts "Adding user to group #{group_name}"
+    command = {
+      id: group_id,
+      user_id: user_id,
+      access_level: access_level
+    }
+
+    response = RestClient.post(
+       "#{@api_endpoint}/groups/#{group_id}/members?private_token=#{@api_key}",
+       command.to_json,
+       content_type: 'application/json'
+    )
+
+    response = JSON.parse response.body
+
+    puts "User added to group #{group_name}"
   end
 
   no_tasks do

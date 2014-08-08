@@ -93,6 +93,8 @@ class Glub < Sif::Loader
     response = JSON.parse response.body
 
     puts "Group #{group_name} created."
+    # add root user by default
+    add_user_to_group(response['id'], 1, 'owner')
   end
   
   desc "add_user_to_group GROUP_ID USER_ID PERMISSION", "Add a user to a group"

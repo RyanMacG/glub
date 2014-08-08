@@ -42,7 +42,7 @@ class Glub < Sif::Loader
     setup_repo
   end
 
-  desc "list projects", "Lists all projects"
+  desc "list", "Lists all projects"
   def list
   
     response = RestClient.get( 

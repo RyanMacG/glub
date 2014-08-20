@@ -164,6 +164,31 @@ class Glub < Sif::Loader
     puts "Project #{project_name} moved to group #{group_name}"
   end
 
+  desc "clone", "Clone from a list of projects"
+  def clone
+
+    response = RestClient.get(
+       "#{@api_endpoint}/projects?private_token=#{@api_key}"
+    )
+
+    response = JSON.parse response.body
+
+    projects = []
+    response.each_with_index do |project, idx|
+      idx+=1
+      projects << { id: idx, name: project['name'], ssh_repo: project['ssh_url_to_repo'] }
+    end
+    puts "Projects: "
+    projects.each { |project| puts " #{project[:id]} Name:#{project[:name]}"}
+    # "#{projects}"
+    puts 'Which project do you want to clone? (enter the number)'
+    clone_response = $stdin.gets.chomp.to_i
+    if !clone_response.nil?
+      project = projects.find{ |p| p[:id] == clone_response }
+      system "git clone #{project[:ssh_repo]}"
+    end
+  end
+
   no_tasks do
     def load_configuration
       super

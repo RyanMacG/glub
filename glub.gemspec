@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["George McIntosh", "Ryan MacGillivray"]
-  s.date = "2013-04-18"
+  s.date = Date.today.to_s
   s.description = "Glub - a Gitlab client for your command-line."
   s.email = "rmacg89@gmail.com"
   s.executables = ["glub"]

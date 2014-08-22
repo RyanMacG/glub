@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = "glub"
-  s.version = "0.0.3"
+  s.version = File.read( File.join( File.dirname(__FILE__), 'VERSION' ) )
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["George McIntosh"]
+  s.authors = ["George McIntosh", "Ryan MacGillivray"]
   s.date = "2013-04-18"
   s.description = "Glub - a Gitlab client for your command-line."
-  s.email = "george@georgemcintosh.com"
+  s.email = "rmacg89@gmail.com"
   s.executables = ["glub"]
   s.extra_rdoc_files = [
     "README.md"
@@ -74,4 +74,3 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
   end
 end
-

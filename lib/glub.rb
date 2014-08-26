@@ -202,4 +202,22 @@ class Glub < Sif::Loader
     end
   end
 
+  private
+
+  def determine_access_level(permission)
+    case permission
+    when 'guest'
+      access_level = 10
+    when 'reporter'
+      access_level = 20
+    when 'developer'
+      access_level = 30
+    when 'master'
+      access_level = 40
+    when 'owner'
+      access_level = 50
+    end
+  end
+
+
 end

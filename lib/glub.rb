@@ -51,7 +51,7 @@ class Glub < Sif::Loader
   def list
 
     response = RestClient.get(
-       "#{@api_endpoint}/projects?private_token=#{@api_key}"
+       "#{@api_endpoint}/projects/all?private_token=#{@api_key}&per_page=1000000"
     )
 
     response = JSON.parse response.body
@@ -173,7 +173,7 @@ class Glub < Sif::Loader
   def clone
 
     response = RestClient.get(
-       "#{@api_endpoint}/projects?private_token=#{@api_key}"
+       "#{@api_endpoint}/projects/all?private_token=#{@api_key}&per_page=1000000"
     )
 
     response = JSON.parse response.body

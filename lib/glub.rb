@@ -183,9 +183,12 @@ class Glub < Sif::Loader
       idx+=1
       projects << { id: idx, name: project['name'], ssh_repo: project['ssh_url_to_repo'] }
     end
+
+    projects = projects.sort_by {|p| p[:name]}
     puts "Projects: "
+
     projects.each { |project| puts " #{project[:id]} Name:#{project[:name]}"}
-    # "#{projects}"
+
     puts 'Which project do you want to clone? (enter the number)'
     clone_response = $stdin.gets.chomp.to_i
     if !clone_response.nil?

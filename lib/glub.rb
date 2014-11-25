@@ -177,6 +177,7 @@ class Glub < Sif::Loader
     )
 
     response = JSON.parse response.body
+    response = response.sort_by {|r| r['name']}
 
     projects = []
     response.each_with_index do |project, idx|
@@ -184,7 +185,6 @@ class Glub < Sif::Loader
       projects << { id: idx, name: project['name'], ssh_repo: project['ssh_url_to_repo'] }
     end
 
-    projects = projects.sort_by {|p| p[:name]}
     puts "Projects: "
 
     projects.each { |project| puts " #{project[:id]} Name:#{project[:name]}"}

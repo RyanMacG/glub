@@ -49,19 +49,21 @@ class Glub < Sif::Loader
 
   desc "list", "Lists all projects"
   def list
-
-    response = RestClient.get(
-       "#{@api_endpoint}/projects/all?private_token=#{@api_key}&per_page=1000000"
-    )
-
-    response = JSON.parse response.body
+    response = []
+    per_page = 100
+    page = 0
+    while response.length == page * per_page do
+      page += 1
+      url = "#{@api_endpoint}/projects/all?private_token=#{@api_key}&page=#{page}&per_page=#{per_page}"
+      git_lab_data = RestClient.get(url)
+      response.concat JSON.parse(git_lab_data.body)
+    end
 
     projects = []
     response.each { |project| projects << "Name:#{project['name']} / ID:#{project['id']}" }
     puts "Projects: "
     projects.each { |project| puts "  #{project}" }
     "#{projects}"
-
   end
 
   desc "list_groups", "Lists all groups"
@@ -171,12 +173,16 @@ class Glub < Sif::Loader
 
   desc "clone", "Clone from a list of projects"
   def clone
+    response = []
+    per_page = 100
+    page = 0
+    while response.length == page * per_page do
+      page += 1
+      url = "#{@api_endpoint}/projects/all?private_token=#{@api_key}&page=#{page}&per_page=#{per_page}"
+      git_lab_data = RestClient.get(url)
+      response.concat JSON.parse(git_lab_data.body)
+    end
 
-    response = RestClient.get(
-       "#{@api_endpoint}/projects/all?private_token=#{@api_key}&per_page=1000000"
-    )
-
-    response = JSON.parse response.body
     response = response.sort_by {|r| r['name']}
 
     projects = []
